@@ -171,3 +171,32 @@ while True:
     for i in range(255):
         sm.put(i)
 ```
+
+## Measure pulse length
+(See https://github.com/orgs/micropython/discussions/16725, thanks Peter Hinch!)
+```python
+inpin = Pin(16, Pin.IN, Pin.PULL_UP)
+
+@rp2.asm_pio(set_init=rp2.PIO.IN_LOW, autopush=True, push_thresh=32)
+def mark():
+    set(x, 0)
+    wait(0, pin, 0)  # Wait for pin to go low
+    wait(1, pin, 0)  # Low to high transition
+    label('low_high')
+    jmp(x_dec, 'next') [1]  # unconditional
+    label('next')
+    jmp(pin, 'low_high')  # while pin is high
+    in_(x, 32)  # Auto push: SM stalls if FIFO full
+        
+sm1 = rp2.StateMachine(1, mark, in_base=inpin, jmp_pin=inpin)
+sm1.active(1)
+
+# Clock is 125MHz. 3 cycles per iteration, so unit is 24.0ns
+def scale(v):
+    return (1 + (v ^ 0xffffffff)) * 24e-6  # Scale to ms
+
+while True:
+    mark = scale(sm1.get())
+    print( mark)
+    time.sleep(0.5)
+```
