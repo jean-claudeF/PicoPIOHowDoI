@@ -117,11 +117,11 @@ if sm.rx_fifo() > 0:
   ```
 
 - Decrement X by 1:
-
-```python
-jmp(x_dec, "next")
-label("next")
-```
+  As there is no direct decrement operation we have to use jmp_dec
+  ```python
+  jmp(x_dec, "next")
+  label("next")
+  ```
 
 - Increment X by 1:
   
@@ -200,3 +200,10 @@ while True:
     print( mark)
     time.sleep(0.5)
 ```
+At the beginning X is set to 0, so we are counting into negatve numbers.
+
+X is decremented as long as the input is high (note jmp_pin=inpin in StateMachine  definition).
+
+At the end we add 1 to the inverted X to convert to a positive number
+
+
