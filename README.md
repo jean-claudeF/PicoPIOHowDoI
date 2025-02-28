@@ -8,7 +8,7 @@ import machine
 from rp2 import PIO, StateMachine, asm_pio
 ```
 ## Uncomple overview
-![Picture](PIO_cmds.png)
+![Picture](PIO_Overview.png)
 
 ## Set pins, delay
 
