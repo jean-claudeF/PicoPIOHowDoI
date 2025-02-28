@@ -7,6 +7,8 @@ import time
 import machine
 from rp2 import PIO, StateMachine, asm_pio
 ```
+## Uncomple overview
+![Picture](PIO_cmds.png)
 
 ## Set pins, delay
 
