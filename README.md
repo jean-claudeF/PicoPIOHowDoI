@@ -204,7 +204,7 @@ while True:
     print( mark)
     time.sleep(0.5)
 ```
-At the beginning X is set to 0, so we are counting into negatve numbers.
+At the beginning X is set to 0, so we are counting into negative numbers.
 
 X is decremented as long as the input is high (note jmp_pin=inpin in StateMachine  definition).
 
