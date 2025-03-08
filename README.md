@@ -8,7 +8,7 @@ import machine
 from rp2 import PIO, StateMachine, asm_pio
 ```
 ## Uncomple overview
-![Picture](PIO_Overview.png)
+![Picture](PIO_cmds.png)
 Not shown here: set(pins, 0/1), jmp(pin, ...) and others
 
 
