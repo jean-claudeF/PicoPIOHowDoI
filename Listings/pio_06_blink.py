@@ -1,4 +1,4 @@
-# pio_05_blink   1Hz
+# pio_06_blink   1Hz
 from rp2 import PIO, StateMachine, asm_pio
 from machine import Pin
 import time
